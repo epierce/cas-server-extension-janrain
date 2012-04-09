@@ -15,12 +15,6 @@
  */
 package org.jasig.cas.support.janrain.authentication;
 
-
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.jasig.cas.authentication.Authentication;
 import org.jasig.cas.authentication.AuthenticationMetaDataPopulator;
 import org.jasig.cas.authentication.MutableAuthentication;
@@ -47,16 +41,7 @@ public final class JanrainAuthenticationMetaDataPopulator implements Authenticat
                                                                                               .getAuthenticatedDate());
             mutableAuthentication.getAttributes().putAll(authentication.getAttributes());
             return mutableAuthentication;
-        } else {
-				 Map<String,Object> userAttributes = new HashMap<String,Object>();
-				 userAttributes.put("ProviderName",new String("Local"));
-				 final Principal simplePrincipal = new SimplePrincipal(authentication.getPrincipal().getId(),
-                                                                    userAttributes);
-              final MutableAuthentication mutableAuthentication = new MutableAuthentication(simplePrincipal,
-                                                                                            authentication
-                                                                                                .getAuthenticatedDate());
-              mutableAuthentication.getAttributes().putAll(authentication.getAttributes());
-              return mutableAuthentication;
-			}
+        }
+        return authentication;
     }
 }
