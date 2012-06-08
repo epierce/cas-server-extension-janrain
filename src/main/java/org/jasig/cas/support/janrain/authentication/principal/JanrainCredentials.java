@@ -95,8 +95,13 @@ public final class JanrainCredentials implements Credentials {
         if(userProfile.getBirthday() != null){
             userAttributes.put("Birthday", userProfile.getBirthday());
         }
+        /* 
+         * If the 'VerifiedEmail' attribute exists, use that as the user's email address.  If not, look for 'Email' 
+         */
         if(userProfile.getVerifiedEmail() != null){
             userAttributes.put("Email", userProfile.getVerifiedEmail());
+        } else if(userProfile.getEmail() != null){
+            userAttributes.put("Email", userProfile.getEmail());
         }
         if(userProfile.getProviderName() != null){
             userAttributes.put("PhoneNumber", userProfile.getPhoneNumber());
