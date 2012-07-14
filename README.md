@@ -57,7 +57,7 @@ Add the following block to `$CAS_HOME/cas-server-webapp/pom.xml`:
            <dependency>
              <groupId>${project.groupId}</groupId>
              <artifactId>cas-server-extension-janrain</artifactId>
-             <version>${project.version}</version>
+             <version>0.1</version>
            </dependency>
 and add the module to the `<modules>` block in `$CAS_HOME/pom.xml`
 
