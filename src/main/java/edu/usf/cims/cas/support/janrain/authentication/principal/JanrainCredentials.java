@@ -1,19 +1,4 @@
-/*
- *  Copyright 2012 The JA-SIG Collaborative
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-package org.jasig.cas.support.janrain.authentication.principal;
+package edu.usf.cims.cas.support.janrain.authentication.principal;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -29,19 +14,19 @@ import com.googlecode.janrain4j.api.engage.response.profile.Profile;
 
 /**
  * This class creates a CAS-compatible credential using data from Janrain Engage
- * 
+ *
  * @author Eric Pierce
- * @since 3.5.0
+ * @since 0.1
  */
 public final class JanrainCredentials implements Credentials {
-    
+
     private static final long serialVersionUID = 2749515040385101768L;
 
     /** The token that will sent to the Janrain user_info service */
     private String token;
-    
+
     private String identifier;
-    
+
     private Map<String, Object> userAttributes;
 
     public JanrainCredentials(final String token) {
@@ -56,7 +41,7 @@ public final class JanrainCredentials implements Credentials {
     public final String getToken() {
         return this.token;
     }
-    
+
     public final void setIdentifier(final String identifier) {
         this.identifier = identifier;
     }
@@ -64,7 +49,7 @@ public final class JanrainCredentials implements Credentials {
     public final String getIdentifier() {
         return this.identifier;
     }
-    
+
     /**
     * Create a map of the User's Attributes from a janrain4j Profile object
     *
@@ -72,7 +57,7 @@ public final class JanrainCredentials implements Credentials {
     * @param friendList
     */
     public void setUserAttributes(Profile userProfile, List<String> friendList) {
-     
+
         Map<String,Object> userAttributes = new HashMap<String,Object>();
 
         if(userProfile.getProviderName() != null){
@@ -95,8 +80,9 @@ public final class JanrainCredentials implements Credentials {
         if(userProfile.getBirthday() != null){
             userAttributes.put("Birthday", userProfile.getBirthday());
         }
-        /* 
-         * If the 'VerifiedEmail' attribute exists, use that as the user's email address.  If not, look for 'Email' 
+        /*
+         * If the 'VerifiedEmail' attribute exists, use that as the user's email address.
+         * If not, look for 'Email'
          */
         if(userProfile.getVerifiedEmail() != null){
             userAttributes.put("Email", userProfile.getVerifiedEmail());
