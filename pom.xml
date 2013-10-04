@@ -1,13 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<groupId>org.jasig.cas</groupId>
-		<artifactId>cas-server</artifactId>
-		<version>3.5.0</version>
-	</parent>
-  <name>Jasig Central Authentication Service JanRain Engage Support</name>
-  <groupId>org.jasig.cas</groupId>
+  <name>Jasig Central Authentication Service Janrain Authentication</name>
+  <groupId>edu.usf.cims</groupId>
   <artifactId>cas-server-extension-janrain</artifactId>
-  <version>0.1</version>
+  <version>0.2.0</version>
   <packaging>jar</packaging>
   <modelVersion>4.0.0</modelVersion>
   <inceptionYear>2012</inceptionYear>
@@ -44,15 +39,24 @@
   </developers>
 
   <properties>
-        <cas.version>3.5.0</cas.version>
+        <cas.version>3.5.2</cas.version>
         <janrain4j.version>1.1.0</janrain4j.version>
+        <servlet.version>2.5</servlet.version>
   </properties>
-	
+
   <dependencies>
+
     <dependency>
       <groupId>org.jasig.cas</groupId>
       <artifactId>cas-server-core</artifactId>
       <version>${cas.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>${servlet.version}</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -62,11 +66,38 @@
     </dependency>
 
   </dependencies>
-  
+
   <build>
     <plugins>
-      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  
 </project>
